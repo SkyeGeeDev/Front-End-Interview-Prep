@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this</title>
+    <link href="../src/output.css" rel="stylesheet">
+</head>
+<body class="mx-8 ">
+    <div class="flex flex-col space-y-4 ">
+        <a class="text-black hover:underline" href="../src/index.html">Home</a>
+        <p class="text-center justify-center py-8">How <code>this</code> works in Javascript</p>
+        <p>The value of <code>this</code> depends on how the function is called:</p>
+        <ol class="list-decimal">
+            <li>If the <code>new</code> keyword is used when calling the function, <code>this</code> inside the function is a brand new object:</li>
+            <pre>
+<code>function ConstructorExample() {
+    console.log(this);
+    this.value = 10;
+    consoloe.log(this);
+}
+
+new ConstructorExample();
+</code>
+            </pre>
+            <li>If <code>apply</code>, <code>call</code>, or <code>bind</code> are used to call/create a function, <code>this</code> inside the function is the object that is passed in as the argument:</code></li>
+            <pre>
+<code>function fn() {
+    console.log(this);
+}
+
+var obj = {
+    value: 5
+};
+
+var boundFn = fn.bind(obj);
+
+boundFn(); // {value: 5}
+fn.call(obj); // {value: 5}
+fn.apply(obj); // {value: 5}
+</code>
+            </pre>
+            <li>If a function is called as a method (dot notation), <code>this</code> is the object that the function is a property of:</code></li>
+            <pre>
+<code>var obj = {
+    value: 5,
+    printThis: function () {
+        console.log(this);
+    }
+};
+
+obj.printThis(); // {value: 5, printThis: ƒ}
+</code>
+            </pre>
+            <li>If a function is invoked as a free function invocation (invoked without any of the conditions present above), <code>this</code> is the global object. In a browser, it's <code>window</code>:</code></li>
+            <pre>
+<code>function fn() {
+    console.log(this);
+}
+
+//If called in browser:
+
+fn(); // -> Window {stop: ƒ, open: ƒ, alert: ƒ, ...}
+</code>
+            </pre>
+        </ol>
+    </div>
+</body>
+</html>
