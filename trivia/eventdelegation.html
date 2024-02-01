@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Delegation</title>
+    <link href="../src/output.css" rel="stylesheet">
+</head>
+<body class='mx-8'>
+    <div class="flex flex-col space-y-4 ">
+        <a class="text-black hover:underline" href="../src/index.html">Home</a>
+        <p class="flex justify-center py-8">Event Delegation</p>
+        <p>Its a technique involving adding event listeners to a parent element instead of adding them to the descendant elements. The listener will fire whenever the event is triggered on the descendant elements due to even bubbling up the DOM. The benefits of this technique are:</p>
+        <ul class="list-disc ml-8">
+            <li>Memory footprint goes down because only one single handler is needed on the parent element, rather than having to attach event handlers on each descendant.</li>
+            <li>There is no need to unbind the handler from elements that are removed and to bind the event for new elements.</li>
+        </ul>
+
+        <p>Example:</p>
+        <p>We have a list below that has the id "parent-list" and it has several child elements: </p>
+        <ul class="list-disc ml-8" id="parent-list">
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+            <li>Item 4</li>
+            <li>Item 5</li>
+        </ul>
+        <p>We want something to happen when each child element is clicked. You could add event listeners to each li element but when there are many li elements being added and removed, it could be bothersome.</p>
+        <p>Solution:</p>
+        <p>You add an event listener to the parent ul element and check the event object's target property to gain a reference to the actual clicked node.</p>
+        <pre>
+            <code>
+                const myList = document.getElementById('parent-list')
+
+                myList.addEventListener('click', function(e) {
+                    const target = e.target;
+                    if (target.matches('li')) {
+                        target.style.backgroundColor = 'blue';
+                    }
+                })
+            </code>
+        </pre>
+        
+    </div>
+    <script>
+        const myList = document.getElementById('parent-list')
+
+        myList.addEventListener('click', function(e) {
+            const target = e.target;
+            if (target.matches('li')) {
+                target.style.backgroundColor = 'blue';
+            }
+        })
+    </script>
+</body>
+</html>
