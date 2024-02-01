@@ -544,6 +544,10 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.m-8 {
+  margin: 2rem;
+}
+
 .mx-8 {
   margin-left: 2rem;
   margin-right: 2rem;
@@ -555,6 +559,10 @@ video {
 
 .flex {
   display: flex;
+}
+
+.list-decimal {
+  list-style-type: decimal;
 }
 
 .list-disc {
@@ -580,9 +588,13 @@ video {
   padding-bottom: 2rem;
 }
 
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
+.text-center {
+  text-align: center;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
 }
 
 .text-black {
@@ -590,8 +602,12 @@ video {
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
-.underline {
-  text-decoration-line: underline;
+code {
+  background-color: whitesmoke;
+  border: 1rem;
+  border-color: black;
+  border-radius: 4px;
+  padding: 2px;
 }
 
 .hover\:underline:hover {

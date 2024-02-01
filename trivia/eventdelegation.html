@@ -28,19 +28,26 @@
         <p>We want something to happen when each child element is clicked. You could add event listeners to each li element but when there are many li elements being added and removed, it could be bothersome.</p>
         <p>Solution:</p>
         <p>You add an event listener to the parent ul element and check the event object's target property to gain a reference to the actual clicked node.</p>
+        <p>Now, when you click on the list items above, they will change the background of them to blue.</p>
         <pre>
-            <code>
-                const myList = document.getElementById('parent-list')
+<code>
+const myList = document.getElementById('parent-list')
 
-                myList.addEventListener('click', function(e) {
-                    const target = e.target;
-                    if (target.matches('li')) {
-                        target.style.backgroundColor = 'blue';
-                    }
-                })
-            </code>
+myList.addEventListener('click', function(e) {
+    const target = e.target;
+    if (target.matches('li')) {
+        target.style.backgroundColor = 'blue';
+    }
+})
+</code>
         </pre>
-        
+        <ul class="list-disc ml-8" id="parent-list">
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+            <li>Item 4</li>
+            <li>Item 5</li>
+        </ul>
     </div>
     <script>
         const myList = document.getElementById('parent-list')
