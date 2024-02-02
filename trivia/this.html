@@ -53,6 +53,7 @@ obj.printThis(); // {value: 5, printThis: ƒ}
 </code>
             </pre>
             <li>If a function is invoked as a free function invocation (invoked without any of the conditions present above), <code>this</code> is the global object. In a browser, it's <code>window</code>:</code></li>
+            <p><i>*Note that this rule is the same as rule 3 - the difference is that a function that is not declared as a method automatically becomes a property of the global object, <code>window</code>. This is therefore an implicit method invocation. When we call <code>fn()</code>, it's interpreted as <code>window.fn()</code>, so <code>this</code> is <code>window</code>.</i></p>
             <pre>
 <code>function fn() {
     console.log(this);
@@ -61,6 +62,22 @@ obj.printThis(); // {value: 5, printThis: ƒ}
 //If called in browser:
 
 fn(); // -> Window {stop: ƒ, open: ƒ, alert: ƒ, ...}
+</code>
+            </pre>
+            <li>If multiple of the above rules apply, the rule that is higher wins and will set the <code>this</code> value.</li>
+            <li>If the function is an arrow function, it ignores all the rules above and receives the <code>this</code> value of its surrounding scope at the time it's created. To determine <code>this</code>, go one line above the arrow function's creation and see what the value of <code>this</code> is there. It will be the same in the arrow function.</li>
+            <pre>
+<code>() => {} // Arrow functions
+const obj = {
+    value: 'abc',
+    createArrowFn: function() {
+        return () => console.log(this);
+    }
+};
+
+const arrowFN = obj.createArrowFn();
+
+arrowFn(); // -> {value: 'abc', createArrowFn: ƒ }
 </code>
             </pre>
         </ol>
